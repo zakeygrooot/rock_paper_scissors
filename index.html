@@ -8,19 +8,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Rock, Paper, Scissors</h1>
-    <!-- Buttons to choose Rock, Paper, or Scissors -->
-    <button onclick="playGame(0)">Rock</button>
-    <button onclick="playGame(1)">Paper</button>
-    <button onclick="playGame(2)">Scissors</button>
+    <h1>Welcome to Waseem's Rock, Paper, Scissors Game</h1>
     
+    <!-- Placeholder for the personalized welcome message -->
+    <p id="welcomeMessage"></p>
+    
+    <!-- Buttons to choose Rock, Paper, or Scissors, hidden until after name entry -->
+    <div id="gameOptions" style="display:none;">
+        <button onclick="playGame(0)">Rock</button>
+        <button onclick="playGame(1)">Paper</button>
+        <button onclick="playGame(2)">Scissors</button>
+    </div>
+
     <!-- Paragraph to display the result of the game -->
     <p id="result"></p>
 
-    <!-- Link to the JavaScript file that contains the game logic -->
-    <script src="game.js"></script>
-
+    <!-- Script for the game logic -->
     <script>
+        // Function to prompt the user for their name
+        function askUserName() {
+            const userName = prompt("Before we start, what's your name?");
+            const welcomeMessageElement = document.getElementById('welcomeMessage');
+            const gameOptionsElement = document.getElementById('gameOptions');
+            
+            // Personalized message for the user
+            if (userName.toLowerCase() === 'sapna') {
+                welcomeMessageElement.innerHTML = `Hello ${userName}, my love. Shall we start?`;
+            } else {
+                welcomeMessageElement.innerHTML = `Hello ${userName}. My name is Waseem. Shall we start the game?`;
+            }
+
+            // Show the game options after welcoming the user
+            gameOptionsElement.style.display = 'block';
+        }
+
+        // Function to play the game
         function playGame(userChoice) {
             const choices = ['Rock', 'Paper', 'Scissors'];
             const waseemChoice = Math.floor(Math.random() * 3);  // Random choice for Waseem
@@ -31,19 +53,4 @@
                 result = `It's a draw! Both you and Waseem chose ${choices[userChoice]}`;
                 resultElement.style.color = 'black'; // Draw: result in black
             } else if (
-                (userChoice === 0 && waseemChoice === 2) ||
-                (userChoice === 1 && waseemChoice === 0) ||
-                (userChoice === 2 && waseemChoice === 1)
-            ) {
-                result = `You won! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
-                resultElement.style.color = 'green'; // Win: result in green
-            } else {
-                result = `You lost! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
-                resultElement.style.color = 'red'; // Loss: result in red
-            }
-
-            resultElement.innerHTML = result;
-        }
-    </script>
-</body>
-</html>
+                (userChoice === 0 && w

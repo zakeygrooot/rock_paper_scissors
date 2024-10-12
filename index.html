@@ -10,6 +10,13 @@
 <body>
     <h1>Welcome to Waseem's Rock, Paper, Scissors Game</h1>
     
+    <!-- Input field for the user to type their name -->
+    <div id="nameEntry">
+        <label for="username">Enter your name:</label>
+        <input type="text" id="username" placeholder="Your Name" />
+        <button onclick="submitName()">Submit</button>
+    </div>
+
     <!-- Placeholder for the personalized welcome message -->
     <p id="welcomeMessage"></p>
     
@@ -25,9 +32,9 @@
 
     <!-- Script for the game logic -->
     <script>
-        // Function to prompt the user for their name
-        function askUserName() {
-            const userName = prompt("Before we start, what's your name?");
+        // Function to handle the submission of the user's name
+        function submitName() {
+            const userName = document.getElementById('username').value;
             const welcomeMessageElement = document.getElementById('welcomeMessage');
             const gameOptionsElement = document.getElementById('gameOptions');
             
@@ -40,6 +47,7 @@
 
             // Show the game options after welcoming the user
             gameOptionsElement.style.display = 'block';
+            document.getElementById('nameEntry').style.display = 'none'; // Hide the name entry after submission
         }
 
         // Function to play the game
@@ -66,9 +74,6 @@
 
             resultElement.innerHTML = result;
         }
-
-        // Run the askUserName function when the page loads
-        window.onload = askUserName;
     </script>
 </body>
 </html>

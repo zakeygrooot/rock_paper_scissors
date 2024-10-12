@@ -53,4 +53,22 @@
                 result = `It's a draw! Both you and Waseem chose ${choices[userChoice]}`;
                 resultElement.style.color = 'black'; // Draw: result in black
             } else if (
-                (userChoice === 0 && w
+                (userChoice === 0 && waseemChoice === 2) ||
+                (userChoice === 1 && waseemChoice === 0) ||
+                (userChoice === 2 && waseemChoice === 1)
+            ) {
+                result = `You won! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
+                resultElement.style.color = 'green'; // Win: result in green
+            } else {
+                result = `You lost! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
+                resultElement.style.color = 'red'; // Loss: result in red
+            }
+
+            resultElement.innerHTML = result;
+        }
+
+        // Run the askUserName function when the page loads
+        window.onload = askUserName;
+    </script>
+</body>
+</html>

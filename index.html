@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors Game</title>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
 </head>
 <body>
-
-<h1>Welcome to Waseem's Rock, Paper, Scissors Game</h1>
-
-<label for="username">Enter your name:</label>
-<input type="text" id="username" placeholder="Your name">
-<button onclick="startGame()">Start Game</button>
-
-<div id="gameArea" style="display:none;">
-    <p id="greeting"></p>
-    <p>Choose 0 for Rock, 1 for Paper, or 2 for Scissors:</p>
+    <h1>Rock, Paper, Scissors</h1>
+    <!-- Buttons to choose Rock, Paper, or Scissors -->
     <button onclick="playGame(0)">Rock</button>
     <button onclick="playGame(1)">Paper</button>
     <button onclick="playGame(2)">Scissors</button>
+    
+    <!-- Paragraph to display the result of the game -->
     <p id="result"></p>
-</div>
 
-<script src="game.js"></script>
+    <!-- Link to the JavaScript file that contains the game logic -->
+    <script src="game.js"></script>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            const waseemChoice = Math.floor(Math.random() * 3);  // Random choice for Waseem
+            let result = '';
+            const resultElement = document.getElementById('result');
+
+            if (userChoice === waseemChoice) {
+                result = `It's a draw! Both you and Waseem chose ${choices[userChoice]}`;
+                resultElement.style.color = 'black'; // Draw: result in black
+            } else if (
+                (userChoice === 0 && waseemChoice === 2) ||
+                (userChoice === 1 && waseemChoice === 0) ||
+                (userChoice === 2 && waseemChoice === 1)
+            ) {
+                result = `You won! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
+                resultElement.style.color = 'green'; // Win: result in green
+            } else {
+                result = `You lost! You chose ${choices[userChoice]}, and Waseem chose ${choices[waseemChoice]}`;
+                resultElement.style.color = 'red'; // Loss: result in red
+            }
+
+            resultElement.innerHTML = result;
+        }
+    </script>
 </body>
 </html>
